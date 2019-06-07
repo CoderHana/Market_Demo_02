@@ -2,7 +2,7 @@
 import apisauce from 'apisauce'
 
 // our "constructor"
-const create = (baseURL = 'https://api.github.com/') => {
+const create = (baseURL = 'https://api.snapp.market/mart/v1/') => {
   // ------
   // STEP 1
   // ------
@@ -37,6 +37,7 @@ const create = (baseURL = 'https://api.github.com/') => {
   const getRoot = () => api.get('')
   const getRate = () => api.get('rate_limit')
   const getUser = (username) => api.get('search/users', {q: username})
+  // const getResturants = (vendorCode = '0jyw5g', lat = 35.773762924116, lng = 2051.418259659771) => api.get(`restaurant/new-details?vendorCode=${vendorCode}&lat=${lat}&long=${lng}`, {q: username})
 
   // ------
   // STEP 3
