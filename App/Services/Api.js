@@ -37,7 +37,7 @@ const create = (baseURL = 'https://api.snapp.market/mart/v1/') => {
   const getRoot = () => api.get('')
   const getRate = () => api.get('rate_limit')
   const getUser = (username) => api.get('search/users', {q: username})
-  // const getResturants = (vendorCode = '0jyw5g', lat = 35.773762924116, lng = 2051.418259659771) => api.get(`restaurant/new-details?vendorCode=${vendorCode}&lat=${lat}&long=${lng}`, {q: username})
+  const getResturants = (vendorCode = '0jyw5g', lat = 35.773762924116, lng = 2051.418259659771) => api.get(`restaurant/new-details?vendorCode=${vendorCode}&lat=${lat}&long=${lng}`)
 
   // ------
   // STEP 3
@@ -55,7 +55,8 @@ const create = (baseURL = 'https://api.snapp.market/mart/v1/') => {
     // a list of the API functions from step 2
     getRoot,
     getRate,
-    getUser
+    getUser,
+    getResturants
   }
 }
 

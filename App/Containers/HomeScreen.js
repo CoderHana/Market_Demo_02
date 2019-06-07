@@ -1,14 +1,44 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { View, Text } from 'react-native'
+import { connect } from 'react-redux'
 import SliderBannerPromotion from '../Components/SliderBannerPromotion'
+import ResturantActions from '../Redux/ResturantRedux'
 
-export default class LaunchScreen extends Component {
+
+class HomeScreen extends Component {
+  componentDidMount () {
+    this.props.resturantRequest()
+  }
+
   render () {
+    if(this.props.fetching || !this.props.resturant){
+      return (
+        <View>
+          <Text>Loading ...</Text>
+        </View>
+      )
+    }else{
+    const {resturant: {menus}} = this.props
+    const banners = menus
+          .filter(m => m.type === 'WEB_BANNER')
+          .map(m =>  m.banners[0].image)
+
     return (
       <View>
-        <SliderBannerPromotion />
-        {/* <Text>Hello CoderHana</Text> */}
+        <SliderBannerPromotion items={banners} />
       </View>
     )
+    }
   }
 }
+
+const dataDispatchToProp = (dispatch) => ({
+  resturantRequest: () => dispatch(ResturantActions.resturantRequest())
+})
+
+const dataStateToProp = (state) => ({
+  resturant: state.resturant.resturantData,
+  fetching: state.resturant.fetching
+})
+
+export default connect(dataStateToProp, dataDispatchToProp)(HomeScreen)

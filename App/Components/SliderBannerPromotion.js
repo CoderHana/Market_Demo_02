@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 // import PropTypes from 'prop-types'
 import { View, Text, FlatList } from 'react-native'
 import { Card } from 'react-native-elements'
-// import styles from './Styles/SliderBannerPromotion'
+import styles from './Styles/SliderBannerPromotion'
 
 const data = [
   {
@@ -20,6 +21,11 @@ const data = [
 ]
 
 export default class SliderBannerPromotion extends Component {
+
+  static propTypes = {
+    items: PropTypes.array
+  }
+
   constructor (props) {
     super(props)
     this.state = {
@@ -28,6 +34,9 @@ export default class SliderBannerPromotion extends Component {
   }
 
   render () {
+    console.tron.log("fafar")
+    console.tron.log(this.props)
+    const { items } = this.props
     return (
       <View>
         <Text>This is a new Component:</Text>
@@ -35,17 +44,12 @@ export default class SliderBannerPromotion extends Component {
           inverted
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={this.state.data}
+          data={items}
           renderItem={({ item }) => (
             <Card
-              containerStyle={{borderRadius: 10, border: 0, elevation: 0, height: 182, marginLeft: 0}}
-              imageStyle={{
-                borderRadius: 10,
-                overflow: 'hidden',
-                height: 180,
-                width: 350
-              }}
-              image={{ uri: item.imageUrl }} />
+              containerStyle={styles.cardContainer}
+              imageStyle={styles.cardImage}
+              image={{ uri: item }} />
             )
             }
           keyExtractor={(item, index) => index}
