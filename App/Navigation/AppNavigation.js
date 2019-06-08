@@ -1,17 +1,17 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
 import LaunchScreen from '../Containers/LaunchScreen'
-import HomeScreen from '../Containers/HomeScreen'
 
 import styles from './Styles/NavigationStyles'
+import MainTabsNavigator from "./MainTabsNavigator";
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
   LaunchScreen: { screen: LaunchScreen },
-  HomeScreen: { screen: HomeScreen }
+  App: { screen: MainTabsNavigator }
 }, {
   // Default config for all screens
   headerMode: 'none',
-  initialRouteName: 'HomeScreen',
+  initialRouteName: 'App',
   navigationOptions: {
     headerStyle: styles.header
   }
